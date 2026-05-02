@@ -1,5 +1,5 @@
 {
-  "name": "agent-audit-trail",
+  "name": "@mingchain/agent-audit-trail",
   "version": "0.1.0",
   "description": "Immutable AI Agent action logging on BSV blockchain - Merkle tree anchoring with OP_RETURN",
   "type": "module",
