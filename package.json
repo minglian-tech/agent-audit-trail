@@ -1,0 +1,26 @@
+{
+  "name": "agent-audit-trail",
+  "version": "0.1.0",
+  "description": "Immutable AI Agent action logging on BSV blockchain - Merkle tree anchoring with OP_RETURN",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules test/merkle.test.mjs"
+  },
+  "keywords": [
+    "bsv",
+    "audit",
+    "merkle",
+    "blockchain",
+    "agent",
+    "logging",
+    "op-return",
+    "ai-safety"
+  ],
+  "license": "MIT",
+  "author": "Minglian Tech",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/minglian-tech/agent-audit-trail"
+  }
+}

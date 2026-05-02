@@ -1,0 +1,96 @@
+{
+  "id": "agent-audit",
+  "kind": "audit-trail",
+  "name": "Agent Audit Trail",
+  "description": "记录AI Agent所有动作并上链存证 - SHA-256哈希 + BSV区块链锚定",
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "bufferSize": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 10000,
+        "default": 100
+      },
+      "flushIntervalMs": {
+        "type": "integer",
+        "minimum": 60000,
+        "maximum": 3600000,
+        "default": 600000
+      },
+      "workspaceDir": {
+        "type": "string",
+        "default": "audit"
+      },
+      "bsvWallet": {
+        "type": "string",
+        "default": "1HQTm7L2KXTmNTecedhFRnQqP98yU1GAD7"
+      },
+      "sanitizeRules": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "api[_-]?key",
+          "token",
+          "password",
+          "secret",
+          "private[_-]?key",
+          "authorization",
+          "bearer",
+          "x-api-key"
+        ]
+      },
+      "recordTypes": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["tool_call", "agent_reply", "session_start", "session_end"]
+        },
+        "default": ["tool_call", "agent_reply", "session_start", "session_end"]
+      },
+      "anchorEnabled": {
+        "type": "boolean",
+        "default": true
+      }
+    }
+  },
+  "uiHints": {
+    "enabled": {
+      "label": "启用审计存证",
+      "help": "开启后记录所有Agent动作并上链存证"
+    },
+    "bufferSize": {
+      "label": "缓冲大小",
+      "help": "触发锚定的最小记录数量 (默认100条)"
+    },
+    "flushIntervalMs": {
+      "label": "锚定间隔(毫秒)",
+      "help": "最大等待时间，超时强制触发锚定 (默认10分钟)"
+    },
+    "workspaceDir": {
+      "label": "工作目录",
+      "help": "审计数据的存储目录"
+    },
+    "bsvWallet": {
+      "label": "BSV钱包地址",
+      "help": "用于上链存证的钱包地址"
+    },
+    "anchorEnabled": {
+      "label": "启用BSV锚定",
+      "help": "关闭则仅本地记录，不上链"
+    }
+  },
+  "skills": [
+    "skills/agent-audit"
+  ]
+}
